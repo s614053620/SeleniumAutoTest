@@ -1,0 +1,48 @@
+package com.yiibai;
+
+import java.io.File;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.GeckoDriverService;
+
+public class FirstTestCase {
+    public static void main(String[] args) {
+        // declaration and instantiation of objects/variables
+        System.setProperty("webdriver.gecko.driver", "D:\software\WebDriver\geckodriver.exe");
+        System.setProperty("webdriver.firefox.bin", "D:\Program Files\Mozilla Firefox\firefox.exe");
+
+        WebDriver driver = (WebDriver) new FirefoxDriver();
+
+        // Launch website
+        // driver.navigate().to("http://www.baidu.com/");
+        driver.get("http://www.baidu.com/");
+        //driver.manage().window().maximize();
+        String titile = driver.getTitle();
+
+        System.out.println("title is => " + titile);
+
+         // Click on the search text box and send value
+        driver.findElement(By.id("kw")).sendKeys("易百教程");
+
+        // Click on the search button
+        driver.findElement(By.id("su")).click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //driver.quit();
+    }
+}
+
+来源：BootWiki
+链接：https://www.bootwiki/selenium/selenium-webdriver-first-test-case.html
+著作权归作者所有
+商业转载请联系作者获得授权，非商业转载请注明出处
+
