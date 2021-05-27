@@ -2,8 +2,8 @@ package sunkey.autotest.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import sunkey.autotest.Runner;
+import sunkey.autotest.runner.Runner;
+import sunkey.autotest.runner.RunnerContext;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +16,11 @@ import java.util.Map;
 public class Test {
 
     public static void main(String[] args) throws InterruptedException {
-        Runner.loadConfig("config-sunkey.properties");
-        ChromeDriver driver = Runner.CHROME.get("http://pre-sso.27aichi.cn");
+        RunnerContext runner = Runner.CHROME
+                .config("config-sunkey.properties")
+                .open("http://pre-sso.27aichi.cn");
 
-        WebElement form = driver.findElement(By.tagName("form"));
+        WebElement form = runner.driver.findElement(By.tagName("form"));
         List<WebElement> inputs = form.findElements(By.tagName("input"));
 
         Map<String, String> keys = new HashMap<>();
@@ -37,11 +38,11 @@ public class Test {
 
         WebElement submit = form.findElement(By.className("pwd-btn"));
 
-        String url = driver.getCurrentUrl();
+        String url = runner.driver.getCurrentUrl();
         submit.click();
 
         while (true) {
-            String currentUrl = driver.getCurrentUrl();
+            String currentUrl = runner.driver.getCurrentUrl();
             System.out.println("current url:" + currentUrl);
             if (!url.equals(currentUrl)) {
                 // 页面发生跳转
@@ -51,7 +52,7 @@ public class Test {
         }
 
         System.out.println("登陆成功");
-        System.out.println(driver.getTitle());
+        System.out.println(runner.driver.getTitle());
 
     }
 

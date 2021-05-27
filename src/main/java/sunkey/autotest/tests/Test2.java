@@ -3,7 +3,8 @@ package sunkey.autotest.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import sunkey.autotest.Runner;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import sunkey.autotest.runner.Runner;
 
 import java.util.List;
 
@@ -15,9 +16,8 @@ public class Test2 {
 
     public static void main(String[] args) throws InterruptedException {
         // 加载配置
-        Runner.loadConfig("config.properties");
         // 请求网页
-        FirefoxDriver driver = Runner.FIREFOX.get("http://pre-sso.27aichi.cn");
+        RemoteWebDriver driver = Runner.FIREFOX.open("http://pre-sso.27aichi.cn").driver;
         // 获得form节点
         WebElement form = driver.findElement(By.tagName("form"));
         // 查询所有form节点内的input

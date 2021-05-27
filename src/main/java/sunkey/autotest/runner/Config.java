@@ -9,7 +9,21 @@ import java.util.Properties;
  **/
 public class Config {
 
-    public static void load(String location) {
+    private static volatile boolean loaded = false;
+
+    public static boolean loaded() {
+        return loaded;
+    }
+
+    public static synchronized void loadOnce(String location) {
+        if (loaded) {
+            return;
+        }
+        load(location);
+        loaded = true;
+    }
+
+    private static void load(String location) {
         InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(location);
         if (in == null) {
             throw new IllegalStateException("config file not exists!");

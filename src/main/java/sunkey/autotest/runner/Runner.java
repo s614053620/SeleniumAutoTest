@@ -1,9 +1,8 @@
-package sunkey.autotest;
+package sunkey.autotest.runner;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import sunkey.autotest.runner.Config;
 
 /**
  * @author Sunkey
@@ -11,14 +10,12 @@ import sunkey.autotest.runner.Config;
  **/
 public class Runner<T extends RemoteWebDriver> {
 
+    public static final String DEFAULT_CONFIG = "config.properties";
+
     public static final Runner<ChromeDriver> CHROME = new Runner<>(ChromeDriver.class);
     public static final Runner<FirefoxDriver> FIREFOX = new Runner<>(FirefoxDriver.class);
 
     private final Class<T> driverClass;
-
-    public static void loadConfig(String location) {
-        Config.load(location);
-    }
 
     private Runner(Class<T> driverClass) {
         if (driverClass == null) {
@@ -27,10 +24,18 @@ public class Runner<T extends RemoteWebDriver> {
         this.driverClass = driverClass;
     }
 
-    public T get(String url) {
-        T instance = createInstance();
+    public Runner config(String location) {
+        Config.loadOnce(location);
+        return this;
+    }
+
+    public RunnerContext open(String url) {
+        if (!Config.loaded()) {
+            Config.loadOnce(DEFAULT_CONFIG);
+        }
+        RemoteWebDriver instance = createInstance();
         instance.get(url);
-        return instance;
+        return new RunnerContext(instance);
     }
 
     protected T createInstance() {
