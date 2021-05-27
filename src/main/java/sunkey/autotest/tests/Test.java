@@ -18,6 +18,7 @@ public class Test {
     public static void main(String[] args) throws InterruptedException {
         Runner.loadConfig("config-sunkey.properties");
         ChromeDriver driver = Runner.CHROME.get("http://pre-sso.27aichi.cn");
+
         WebElement form = driver.findElement(By.tagName("form"));
         List<WebElement> inputs = form.findElements(By.tagName("input"));
 
