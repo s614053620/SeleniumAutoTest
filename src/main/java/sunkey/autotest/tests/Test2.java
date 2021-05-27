@@ -51,6 +51,10 @@ public class Test2 {
         String url = driver.getCurrentUrl();
         // 点击登录按钮
         submit.click();
+
+        // 或者调用form的submit方法直接提交表单，效果相同。
+        // form.submit();
+
         // 无限循环判断页面是否跳转，如果页面已跳转则退出无限循环
         while (true) {
             // 获得页面当前url
