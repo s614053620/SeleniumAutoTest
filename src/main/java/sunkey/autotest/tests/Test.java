@@ -12,7 +12,7 @@ import sunkey.autotest.Runner;
 public class Test {
 
     public static void main(String[] args) {
-        Runner.loadConfig("config.properties");
+        Runner.loadConfig("config-sunkey.properties");
         ChromeDriver driver = Runner.CHROME.get("http://pre-sso.27aichi.cn");
         WebElement element = driver.findElement(By.tagName("form"));
         System.out.println(element);
