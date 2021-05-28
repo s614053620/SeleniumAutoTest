@@ -22,7 +22,7 @@ public class SsoPortal {
         this.iconName = iconName;
     }
 
-    @AutoTest(path = "/portal", query = "from=sso")
+    @AutoTest(path = "/portal")
     public void portal(TestContext context) {
         List<WebElement> allIcons = context.driver().findElement(By.className("chooseList"))
                 .findElements(By.tagName("a"));

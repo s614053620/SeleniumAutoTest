@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import sunkey.autotest.utils.PatternMatchUtils;
+import sunkey.autotest.utils.UrlUtils;
 
 import java.net.URL;
 
@@ -31,7 +32,7 @@ public class UrlMatchRule extends AbstractURLMatchRule {
                 && matchPort(url.getPort())
                 && matchPath(url.getPath())
                 && matchQuery(url.getQuery())
-                && matchRef(url.getPath());
+                && matchRef(UrlUtils.getRef(url));
     }
 
     protected boolean matchProtocol(String protocol) {
