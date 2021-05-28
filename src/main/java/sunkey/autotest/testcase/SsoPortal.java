@@ -2,8 +2,8 @@ package sunkey.autotest.testcase;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import sunkey.autotest.runner.AutoTest;
+import sunkey.autotest.runner.TestContext;
 import sunkey.autotest.utils.Assert;
 
 import java.util.List;
@@ -12,6 +12,7 @@ import java.util.List;
  * @author Sunkey
  * @since 2021-05-27 6:57 下午
  **/
+
 public class SsoPortal {
 
     private final String iconName;
@@ -21,23 +22,9 @@ public class SsoPortal {
         this.iconName = iconName;
     }
 
-    @AutoTest("http://pre-sso.27aichi.cn/portal?from=sso")
-    public void portalPre(RemoteWebDriver driver) {
-        portal(driver);
-    }
-
-    @AutoTest("http://test-sso.27aichi.cn/portal?from=sso")
-    public void portalTest(RemoteWebDriver driver) {
-        portal(driver);
-    }
-
-    @AutoTest("http://dev-sso.27aichi.cn/portal?from=sso")
-    public void portalDev(RemoteWebDriver driver) {
-        portal(driver);
-    }
-
-    private void portal(RemoteWebDriver driver) {
-        List<WebElement> allIcons = driver.findElement(By.className("chooseList"))
+    @AutoTest(path = "/portal", query = "from=sso")
+    public void portal(TestContext context) {
+        List<WebElement> allIcons = context.driver().findElement(By.className("chooseList"))
                 .findElements(By.tagName("a"));
         for (WebElement icon : allIcons) {
             WebElement h5 = icon.findElement(By.tagName("h5"));

@@ -10,19 +10,22 @@ import java.lang.annotation.Target;
  * @since 2021-05-27 6:01 下午
  **/
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD})
+@Target({ElementType.METHOD, ElementType.TYPE})
 public @interface AutoTest {
 
-    String MATCH_ALL = "*";
+    String DEFAULT = "";
+    int DEFAULT_PORT = 0;
 
-    /**
-     * 页面URI
-     * * : matchAll
-     *
-     * @return
-     */
-    String value() default MATCH_ALL;
+    String protocol() default DEFAULT;
 
-    String host() default MATCH_ALL;
+    String host() default DEFAULT;
+
+    int port() default DEFAULT_PORT;
+
+    String path() default DEFAULT;
+
+    String query() default DEFAULT;
+
+    String ref() default DEFAULT;
 
 }

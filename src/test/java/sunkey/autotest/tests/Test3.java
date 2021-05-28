@@ -1,8 +1,8 @@
 package sunkey.autotest.tests;
 
-import org.openqa.selenium.remote.RemoteWebDriver;
 import sunkey.autotest.runner.AutoTest;
 import sunkey.autotest.runner.Runner;
+import sunkey.autotest.runner.TestContext;
 import sunkey.autotest.testcase.SsoLogin;
 import sunkey.autotest.testcase.SsoPortal;
 
@@ -22,9 +22,11 @@ public class Test3 {
                 .run();
     }
 
-    @AutoTest("*")
-    public void test(RemoteWebDriver driver) {
-        System.out.println("进入默认TestCase");
+    @AutoTest
+    public void test(TestContext test) {
+        System.out.println("测试通过");
+        //test.stop();
+        test.quit();
     }
 
 }
