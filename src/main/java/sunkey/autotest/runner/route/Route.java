@@ -1,20 +1,21 @@
 package sunkey.autotest.runner.route;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import sunkey.autotest.runner.TestContext;
+import sunkey.autotest.utils.Ordered;
 
 /**
  * @author Sunkey
  * @since 2021-05-28 11:42 上午
  **/
-public class Route implements MatchRule, Handler {
+@Getter
+@RequiredArgsConstructor
+public class Route implements MatchRule, Handler, Ordered {
 
     private final MatchRule rule;
     private final Handler handler;
-
-    public Route(MatchRule rule, Handler handler) {
-        this.rule = rule;
-        this.handler = handler;
-    }
+    private final int order;
 
     @Override
     public boolean match(TestContext context) {

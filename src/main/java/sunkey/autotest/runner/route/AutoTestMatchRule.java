@@ -1,13 +1,20 @@
 package sunkey.autotest.runner.route;
 
+import lombok.Getter;
+import lombok.Setter;
 import sunkey.autotest.runner.AutoTest;
 import sunkey.autotest.utils.Assert;
+import sunkey.autotest.utils.Ordered;
 
 /**
  * @author Sunkey
  * @since 2021-05-28 11:36 上午
  **/
-public class AutoTestMatchRule extends UrlMatchRule {
+public class AutoTestMatchRule extends UrlMatchRule implements Ordered {
+
+    @Getter
+    @Setter
+    private int order;
 
     public AutoTestMatchRule(AutoTest clazz, AutoTest method) {
         if (clazz != null) {

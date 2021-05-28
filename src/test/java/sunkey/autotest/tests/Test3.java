@@ -5,9 +5,12 @@ import sunkey.autotest.runner.Runner;
 import sunkey.autotest.runner.TestContext;
 import sunkey.autotest.testcase.SsoLogin;
 import sunkey.autotest.testcase.SsoPortal;
+import sunkey.autotest.utils.Order;
+import sunkey.autotest.utils.OrderComparator;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Sunkey
@@ -16,6 +19,16 @@ import java.net.URL;
 public class Test3 {
 
     public static void main(String[] args) {
+        Method[] methods = Test3.class.getDeclaredMethods();
+        List<Method> methods1 = Arrays.asList(methods);
+        methods1.sort(OrderComparator.INSTANCE);
+        for (Method method : methods1) {
+            System.out.println(method);
+            System.out.println(OrderComparator.getOrder(method));
+        }
+    }
+
+    public static void test() {
         Runner.CHROME
                 .config("config-sunkey.properties")
                 .open("http://pre-sso.27aichi.cn")
@@ -29,14 +42,14 @@ public class Test3 {
     public void testLs(TestContext test) {
         System.out.println("进入路上直销平台页面");
         System.out.println("测试通过");
+        test.driver().navigate().to("");
         test.quit();
     }
 
+    @Order(Order.MIN)
     @AutoTest
-    public void test(TestContext test) throws MalformedURLException {
+    public void test(TestContext test) {
         System.out.println("测试通过");
-        URL url = new URL(test.url());
-        System.out.println(url.getRef());
         test.quit();
     }
 
