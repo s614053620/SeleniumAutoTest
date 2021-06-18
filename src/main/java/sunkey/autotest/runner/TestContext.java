@@ -16,7 +16,7 @@ public class TestContext {
 
     public static final int DEFAULT_MAX_EMPTY_LOOP = 100;
 
-    public final TestRouter runnerContext;
+    public final OpenedTests runnerContext;
     @Getter
     private volatile boolean running = true;
     @Getter

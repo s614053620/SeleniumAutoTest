@@ -19,11 +19,11 @@ public class EventLoop {
 
     public static final long DEFAULT_LOOP_INTERVAL = 500;
 
-    private final TestRouter runnerContext;
+    private final OpenedTests runnerContext;
 
     private final EventHandler.Chain handler = new EventHandler.Chain();
 
-    public EventLoop(TestRouter runnerContext) {
+    public EventLoop(OpenedTests runnerContext) {
         this.runnerContext = runnerContext;
     }
 
