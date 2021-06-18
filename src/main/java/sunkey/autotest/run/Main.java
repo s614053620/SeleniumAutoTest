@@ -16,7 +16,7 @@ public class Main {
                 .open("http://pre-sso.27aichi.cn")
                 .with(new SsoLogin())
                 .with(new SsoPortal("路上直销平台"))
-                .run();
+                .runTests();
     }
 
 }

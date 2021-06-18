@@ -25,7 +25,7 @@ public class Test3 {
                 .with(new SsoPortal("路上直销平台"))
                 .with(new Test3())
                 .with(new AutoQuit())
-                .run();
+                .runTests();
     }
 
     @RequestMapping(ref = "/czrzlist")

@@ -14,21 +14,21 @@ import sunkey.autotest.runner.route.Router;
 @Getter
 @Setter
 @ToString
-public class TestRouter {
+public class OpenedTests {
 
     public final RemoteWebDriver driver;
     private final Router router = new Router();
 
-    TestRouter(RemoteWebDriver driver) {
+    OpenedTests(RemoteWebDriver driver) {
         this.driver = driver;
     }
 
-    public TestRouter with(Object testcase) {
+    public OpenedTests with(Object testcase) {
         router.routeObject(testcase);
         return this;
     }
 
-    public void run() {
+    public void runTests() {
         EventLoop loop = new EventLoop(this);
         loop.getHandler().addLast(new UrlChangedHandler());
         loop.startLoop();
