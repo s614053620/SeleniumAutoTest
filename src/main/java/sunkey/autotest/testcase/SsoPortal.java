@@ -2,7 +2,7 @@ package sunkey.autotest.testcase;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import sunkey.autotest.runner.AutoTest;
+import sunkey.autotest.runner.RequestMapping;
 import sunkey.autotest.runner.TestContext;
 import sunkey.autotest.utils.Assert;
 
@@ -22,7 +22,7 @@ public class SsoPortal {
         this.iconName = iconName;
     }
 
-    @AutoTest(path = "/portal")
+    @RequestMapping(path = "/portal")
     public void portal(TestContext context) {
         List<WebElement> allIcons = context.driver().findElement(By.className("chooseList"))
                 .findElements(By.tagName("a"));

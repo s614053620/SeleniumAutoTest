@@ -14,8 +14,8 @@ public class Main {
         Runner.CHROME
                 .config("config-sunkey.properties")
                 .open("http://pre-sso.27aichi.cn")
-                .testcase(new SsoLogin())
-                .testcase(new SsoPortal("路上直销平台"))
+                .with(new SsoLogin())
+                .with(new SsoPortal("路上直销平台"))
                 .run();
     }
 

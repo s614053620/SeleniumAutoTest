@@ -1,6 +1,6 @@
 package sunkey.autotest.runner.route;
 
-import sunkey.autotest.runner.AutoTest;
+import sunkey.autotest.runner.RequestMapping;
 import sunkey.autotest.runner.TestContext;
 import sunkey.autotest.utils.Assert;
 import sunkey.autotest.utils.OrderComparator;
@@ -17,29 +17,29 @@ public class Router {
 
     private final LinkedList<Route> routes = new LinkedList<>();
 
-    public Router addRoute(Route route) {
+    public Router route(Route route) {
         routes.addLast(route);
         // 每次添加完重新排序
         routes.sort(OrderComparator.INSTANCE);
         return this;
     }
 
-    public Router addRoute(MatchRule rule, Handler handler, int order) {
-        return addRoute(new Route(rule, handler, order));
+    public Router route(MatchRule rule, Handler handler, int order) {
+        return route(new Route(rule, handler, order));
     }
 
-    public Router addRoute(MatchRule rule, Handler handler) {
-        return addRoute(rule, handler, Ordered.DEFAULT_ORDER);
+    public Router route(MatchRule rule, Handler handler) {
+        return route(rule, handler, Ordered.DEFAULT_ORDER);
     }
 
-    public Router addAutoTest(Object testcase) {
+    public Router routeObject(Object testcase) {
         Assert.notNull(testcase, "testcase");
         Class<?> type = testcase.getClass();
-        AutoTest parentAnn = type.getAnnotation(AutoTest.class);
+        RequestMapping parentAnn = type.getAnnotation(RequestMapping.class);
         for (Method method : type.getDeclaredMethods()) {
-            AutoTest ann = method.getAnnotation(AutoTest.class);
+            RequestMapping ann = method.getAnnotation(RequestMapping.class);
             if (ann != null) {
-                addRoute(new AutoTestMatchRule(parentAnn, ann),
+                route(new AutoTestMatchRule(parentAnn, ann),
                         new MethodHandler(testcase, method),
                         getOrder(type, method));
             }

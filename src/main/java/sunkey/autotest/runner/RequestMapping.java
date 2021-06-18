@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  **/
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
-public @interface AutoTest {
+public @interface RequestMapping {
 
     String DEFAULT = "";
     int DEFAULT_PORT = 0;

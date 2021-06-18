@@ -14,17 +14,17 @@ import sunkey.autotest.runner.route.Router;
 @Getter
 @Setter
 @ToString
-public class RunnerContext {
+public class TestRouter {
 
     public final RemoteWebDriver driver;
     private final Router router = new Router();
 
-    RunnerContext(RemoteWebDriver driver) {
+    TestRouter(RemoteWebDriver driver) {
         this.driver = driver;
     }
 
-    public RunnerContext testcase(Object testcase) {
-        router.addAutoTest(testcase);
+    public TestRouter with(Object testcase) {
+        router.routeObject(testcase);
         return this;
     }
 

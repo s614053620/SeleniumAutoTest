@@ -2,7 +2,7 @@ package sunkey.autotest.runner.route;
 
 import lombok.Getter;
 import lombok.Setter;
-import sunkey.autotest.runner.AutoTest;
+import sunkey.autotest.runner.RequestMapping;
 import sunkey.autotest.utils.Assert;
 import sunkey.autotest.utils.Ordered;
 
@@ -16,14 +16,14 @@ public class AutoTestMatchRule extends UrlMatchRule implements Ordered {
     @Setter
     private int order;
 
-    public AutoTestMatchRule(AutoTest clazz, AutoTest method) {
+    public AutoTestMatchRule(RequestMapping clazz, RequestMapping method) {
         if (clazz != null) {
             setValue(clazz);
         }
         setValue(method);
     }
 
-    private void setValue(AutoTest ann) {
+    private void setValue(RequestMapping ann) {
         Assert.notNull(ann, "ann");
         if (!ann.protocol().isEmpty()) {
             setProtocol(ann.protocol());

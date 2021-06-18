@@ -3,7 +3,7 @@ package sunkey.autotest.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import sunkey.autotest.runner.Runner;
-import sunkey.autotest.runner.RunnerContext;
+import sunkey.autotest.runner.TestRouter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class Test {
 
     public static void main(String[] args) throws InterruptedException {
-        RunnerContext runner = Runner.CHROME
+        TestRouter runner = Runner.CHROME
                 .config("config-sunkey.properties")
                 .open("http://pre-sso.27aichi.cn");
 

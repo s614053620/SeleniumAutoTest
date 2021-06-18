@@ -29,13 +29,13 @@ public class Runner<T extends RemoteWebDriver> {
         return this;
     }
 
-    public RunnerContext open(String url) {
+    public TestRouter open(String url) {
         if (!Config.loaded()) {
             Config.loadOnce(DEFAULT_CONFIG);
         }
         RemoteWebDriver instance = createInstance();
         instance.get(url);
-        return new RunnerContext(instance);
+        return new TestRouter(instance);
     }
 
     protected T createInstance() {

@@ -19,11 +19,11 @@ public class EventLoop {
 
     public static final long DEFAULT_LOOP_INTERVAL = 500;
 
-    private final RunnerContext runnerContext;
+    private final TestRouter runnerContext;
 
     private final EventHandler.Chain handler = new EventHandler.Chain();
 
-    public EventLoop(RunnerContext runnerContext) {
+    public EventLoop(TestRouter runnerContext) {
         this.runnerContext = runnerContext;
     }
 
@@ -52,9 +52,8 @@ public class EventLoop {
     }
 
     private void fireUrlChangedEvent(TestContext ctx) {
-        String currentUrl = runnerContext.driver.getCurrentUrl();
         if (ctx.checkUrlChanged()) {
-            handler.handle(new UrlChangedEvent(currentUrl), ctx);
+            handler.handle(new UrlChangedEvent(ctx.url()), ctx);
         }
     }
 

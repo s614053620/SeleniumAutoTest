@@ -2,7 +2,7 @@ package sunkey.autotest.testcase;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import sunkey.autotest.runner.AutoTest;
+import sunkey.autotest.runner.RequestMapping;
 import sunkey.autotest.runner.TestContext;
 
 import java.util.HashMap;
@@ -13,10 +13,10 @@ import java.util.Map;
  * @author Sunkey
  * @since 2021-05-27 6:48 下午
  **/
-@AutoTest(path = "/")
+@RequestMapping(path = "/")
 public class SsoLogin {
 
-    @AutoTest(host = "pre-sso.27aichi.*")
+    @RequestMapping(host = "pre-sso.27aichi.*")
     public void loginPre(TestContext context) {
         Map<String, String> keys = new HashMap<>();
         keys.put("username", "15776319821");
@@ -25,7 +25,7 @@ public class SsoLogin {
         login(context, keys);
     }
 
-    @AutoTest(host = "test-sso.27aichi.*")
+    @RequestMapping(host = "test-sso.27aichi.*")
     public void loginTest(TestContext context) {
         Map<String, String> keys = new HashMap<>();
         keys.put("username", "15776319821");
@@ -34,7 +34,7 @@ public class SsoLogin {
         login(context, keys);
     }
 
-    @AutoTest(host = "dev-sso.27aichi.*")
+    @RequestMapping(host = "dev-sso.27aichi.*")
     public void login(TestContext context) {
         Map<String, String> keys = new HashMap<>();
         keys.put("username", "15776319821");
